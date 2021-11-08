@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+    <meta name="author" content="Daniel T, Marcus F, Markus ">
+    <link rel="stylesheet" href="style.css">
+    <title>Hangman</title>
+</head>
+
+<body>
+    <main>
+        <section id="start-field">
+            <div>
+                <h1>Enter new word:</h3>
+                    <input id="start-input" type="text">
+                    <button id="start-btn">Go!</button>
+            </div>
+        </section>
+        <section id="game-field" class="inactive">
+            <figure id="hangman">SVG</figure>
+            <ul id="game-letters"></ul>
+            <input id="guess-input" type="text" name="" maxlength="1">
+            <button id="game-btn">Enter</button>
+            <article id="used-letters"></article>
+        </section>
+        <section id="end-field" class="inactive">
+            <span>Final score:</span>
+            <input id="end-score" type="text" disabled>
+            <br>
+            <button id="reset-btn">Restart</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
