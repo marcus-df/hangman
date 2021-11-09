@@ -7,9 +7,14 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: linear-gradient(-15deg, #172844 3%, #244056 46%, #6ba2bf 100%);
     color: whitesmoke;
+    // overflow: hidden;
 
     section {
         margin: 20rem 0;
@@ -69,6 +74,11 @@ body {
         flex-direction: column;
     }
 
+    #start-field {
+        margin-top: 0;
+        padding-top: 20rem;
+    }
+
     #game-field {
         .gameUI {
             display: flex;
@@ -83,11 +93,20 @@ body {
 
             #game-letters {
                 margin-top: 8rem;
+
+                .hidden {
+                    user-select: none;
+                    color: rgba(255, 255, 255, 0);
+                }
             }
 
             div {
                 margin-top: 10rem;
                 flex-direction: row;
+
+                input {
+                    width: 5rem;
+                }
             }
         }
 
