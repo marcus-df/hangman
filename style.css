@@ -6,6 +6,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: linear-gradient(-15deg, #172844 3%, #244056 46%, #6ba2bf 100%);
   color: whitesmoke;
@@ -60,6 +64,10 @@ body #end-field {
   justify-content: center;
   flex-direction: column;
 }
+body #start-field {
+  margin-top: 0;
+  padding-top: 20rem;
+}
 body #game-field .gameUI {
   display: flex;
   flex-direction: row;
@@ -73,9 +81,19 @@ body #game-field .guessing {
 body #game-field .guessing #game-letters {
   margin-top: 8rem;
 }
+body #game-field .guessing #game-letters .hidden {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: rgba(255, 255, 255, 0);
+}
 body #game-field .guessing div {
   margin-top: 10rem;
   flex-direction: row;
+}
+body #game-field .guessing div input {
+  width: 5rem;
 }
 body #game-field .guessed {
   display: flex;
