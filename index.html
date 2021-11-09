@@ -18,7 +18,7 @@
             <h1>Enter new word</h1>
             <div>
                 <input id="start-input" type="text">
-                <a href="#hangman"><button id="start-btn">Kör!</button></a>
+                <a href="#hangman"><button id="start-btn">Go!</button></a>
             </div>
         </section>
         <section id="game-field" class="inactive">
@@ -53,31 +53,20 @@
                         <li>Y</li>
                     </ul>
                     <div>
-                        <input type="text" name="" id="guess-input">
+                        <input type="text" name="" id="guess-input" maxlength="1">
                         <button id="game-btn">Guess</button>
                     </div>
                 </div>
             </div>
             <div class="guessed">
-                <span>Du har gissat</span>
-                <ul>
-                    <li>P</li>
-                    <li>L</li>
-                    <li>A</li>
-                    <li>C</li>
-                    <li>E</li>
-                    <li>H</li>
-                    <li>O</li>
-                    <li>L</li>
-                    <li>D</li>
-                    <li>E</li>
-                    <li>R</li>
+                <span>You have guessed</span>
+                <ul id="used-letters">
+
                 </ul>
             </div>
-            <article id="used-letters"></article>
         </section>
         <section id="end-field" class="inactive">
-            <h1>Du gissade ordet!</h1>
+            <h1>You completed the word!</h1>
             <span id="end-score">#placeholder#</span>
             <button id="reset-btn">Restart</button>
         </section>
