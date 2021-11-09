@@ -34,15 +34,18 @@ function generateWord() {
 
     // Nollställer och tar bort ordet från input-fältet.
     startInput.value = "";
-
     // Nollställer och tar bort tidigare ord.
     gameLetters.innerHTML = "";
+    usedLetters.innerHTML = "";
 
     for (let i = 0; i < theWord.length; i++) {
         let letter = theWord[i].toUpperCase();
         let element = document.createElement("li");
         element.innerHTML = letter;
-        element.classList.add("indv-letter");
+
+        // element.innerText = "";
+
+        element.classList.add("hidden", "game-letter");
         gameLetters.appendChild(element);
     }
     // Delar upp ordet i enskilda bokstäver och sätter in dem i arrayen theWord
@@ -56,27 +59,63 @@ guessInput.addEventListener("keypress", function (event) {
 
 gameBtn.addEventListener("click", compareLetter);
 
+let correctLetters = [];
+let failCount = 0;
+
 // Funktion som jämför det inmatade värdet med Ordet (från startInput)
 function compareLetter() {
 
+    let gameLetter = document.getElementsByClassName("game-letter");
     let input = guessInput.value;
     let result = theWord.filter(letter => letter == input);
 
+    correctLetters.length = theWord.length;
+
     if (result[0] != undefined) {
         console.log(result);
+        for (let i = 0; i < theWord.length; i++) {
+            if (result[0] == theWord[i]) {
+                gameLetter[i].classList.remove("hidden");
+                correctLetters[i] = theWord[i];
+            }
+        }
     } else {
         let element = document.createElement("li");
         element.innerHTML = input.toUpperCase();
         usedLetters.appendChild(element);
+        failCount++;
+    };
+
+    //gör om arrayernas olika delar till ett ord och jämför de med varandra
+    if (correctLetters.join("") == theWord.join("")) {
+        winCondition();
     }
 
-    //en for loop som loopar igenom ordet och jämför med det inputade gissningen
-    for (i = 0; i < theWord.length; i++) {
-        if (input == theWord[i]) {
-            console.log(`${i}: ${theWord[i]}`);
-        }
-    };
+    if (failCount >= 8) {
+        loseCondition();
+    }
 };
 
-// Lyssnare som lyssnar efter knapptryckningar och då skall den kalla på : funktion som skriver bokstaven
-// i spelfältet om den finns, annars i en lista vid sidan. 
+// Detta händer när man klarat spelet
+function winCondition() {
+    //scrollar ned till botten
+    window.scrollTo(0, document.body.scrollHeight);
+    document.getElementById("end-title").innerHTML = "You completed the word!";
+}
+
+function loseCondition() {
+    //scrollar ned till botten
+    window.scrollTo(0, document.body.scrollHeight);
+    // Tillfälligt
+    document.getElementById("end-title").innerHTML = "You lost! Try again";
+}
+
+//Reset
+resetBtn.addEventListener('click', function () {
+    startInput.value = "";
+    guessInput.value = "";
+    gameLetters.innerHTML = "";
+    usedLetters.innerHTML = "";
+    failCount = 0;
+    document.getElementById("end-title").innerHTML = "You completed the word!";
+});
