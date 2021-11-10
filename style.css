@@ -15,20 +15,24 @@ body {
   color: whitesmoke;
 }
 body section {
-  margin: 20rem 0;
+  margin: 0;
   align-items: center;
   max-width: none;
 }
 body section div {
   flex-direction: row;
 }
-body section h1 {
-  font-size: 3rem;
+body section #title {
+  font-size: 6rem;
+  border-bottom: thin solid whitesmoke;
   margin: 2rem auto;
   padding-bottom: 1rem;
+}
+body section h1 {
+  font-size: 3rem;
+  padding-bottom: 1rem;
   text-align: center;
-  width: 30rem;
-  border-bottom: thin solid whitesmoke;
+  width: 50rem;
 }
 body input,
 body button {
@@ -52,8 +56,11 @@ body span {
   font-weight: 900;
 }
 body figure {
-  padding-top: 5rem;
-  margin: 20rem 8rem 8rem 0;
+  margin: 10rem 4rem 10rem 0;
+}
+body figure .hang-hidden {
+  stroke: rgba(255, 255, 255, 0);
+  fill: rgba(255, 255, 255, 0);
 }
 body #start-field,
 body #game-field,
@@ -63,20 +70,25 @@ body #end-field {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 100vh;
 }
 body #start-field {
   margin-top: 0;
-  padding-top: 20rem;
+  padding-top: 0;
 }
 body #game-field .gameUI {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
+  justify-content: space-around;
 }
 body #game-field .guessing {
-  margin-top: 8rem;
+  margin: 10rem 0 10rem 0;
+  padding-bottom: 10rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 body #game-field .guessing #game-letters {
   margin-top: 8rem;
@@ -117,6 +129,11 @@ body input {
 body #end-field {
   margin-top: 30rem;
 }
-body #reset-btn {
-  margin-top: 5rem;
+body #end-title {
+  width: auto;
+}
+body #end-score {
+  margin-bottom: 5rem;
+  font-size: 2rem;
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */
