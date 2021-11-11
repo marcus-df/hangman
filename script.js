@@ -28,8 +28,11 @@ const restartBtn = document.getElementById("restart-btn");
 let theWord = [];
 let correctLetters = [];
 let failCount = 0;
+let remainingGuesses;
 let intervalID;
-let bonusPoints = 0;
+let timeBonus;
+let remainingTime;
+let points;
 
 // Anropar startBtn.addEventListener("click", generateWord);
 startInput.addEventListener("keypress", function (event) {
@@ -47,7 +50,7 @@ function generateWord() {
 
     resetInput();
     hideHangman();
-    startTimer(90);
+    startTimer(60);
 
     for (let i = 0; i < theWord.length; i++) {
         let letter = theWord[i];
@@ -132,20 +135,36 @@ function winCondition() {
     clearInterval(intervalID);
     // Scrollar ned till botten
     window.scrollTo(0, document.body.scrollHeight);
-    let remainingGuesses = 6 - failCount;
+    remainingGuesses = 6 - failCount;
     endTitle.innerHTML = "You completed the word!";
 
+    if (remainingTime < 10) {
+        timeBonus = 1;
+    } else if (remainingTime < 20) {
+        timeBonus = 2;
+    } else if (remainingTime < 30) {
+        timeBonus = 3;
+    } else if (remainingTime < 40) {
+        timeBonus = 4;
+    } else if (remainingTime < 50) {
+        timeBonus = 5;
+    } else if (remainingTime < 60) {
+        timeBonus = 6;
+    }
+
+    points = timeBonus + remainingGuesses;
+
     if (remainingGuesses == 6) {
-        endScore.innerHTML = "You won without any wrong guesses, <br>" + "that was perfect!";
+        endScore.innerHTML = "You won without any wrong guesses, <br>" + "You got " + points + " points!";
     } else if (remainingGuesses > 3 && remainingGuesses < 6) {
         endScore.innerHTML = "You won with " + remainingGuesses + " attempts remaining! <br>" +
-            "That was very good!";
+            "You got " + points + " points!";
     } else if (remainingGuesses > 2 && remainingGuesses < 5) {
         endScore.innerHTML = "You won with " + remainingGuesses + " attempts remaining! <br>" +
-            "That was good!";
+            "You got " + points + " points!";
     } else if (remainingGuesses > 0 && remainingGuesses < 3) {
         endScore.innerHTML = "You won with " + remainingGuesses + " attempts remaining! <br>" +
-            "That was close!";
+            "You got " + points + " points!";
     };
 }
 
@@ -171,6 +190,7 @@ function hideHangman() {
     legs.classList.add("hang-hidden");
 }
 
+// Reset
 function resetInput() {
     // Nollställer och tar bort ordet från input-fältet.
     startInput.value = "";
@@ -185,31 +205,25 @@ function resetInput() {
     correctLetters = [];
 }
 
-// Timerfunktion, bestämmer tiden som spelaren har på sig.
 function startTimer(time) {
     intervalID = setInterval(timer, 1000);
-    let remainTime = time;
+    remainingTime = time;
 
     function timer() {
-        remainTime--;
-        displayTime.innerText = remainTime + "s remaining!";
+        remainingTime--;
+        displayTime.innerText = remainingTime + "s remaining!";
 
-        if (remainTime <= 0) {
+        if (remainingTime <= 0) {
             loseCondition();
-            remainTime = 9999;
         }
     };
 };
 
-// Filterfunktion som känner av efter knapptryckningar som matchar alfabetet annars raderar den det sist inmatade värdet
+//testar letter validation
+
+//filterfunktion som känner av efter knapptryckningar som matchar alfabetet annars raderar den det sist inmatade värdet
 startInput.addEventListener("keyup", function () {
     if (!startInput.value.match(/^[a-zA-z]+$/) && startInput.value != "") {
         startInput.value = startInput.value.slice(0, -1);
     }
-});
-
-guessInput.addEventListener("keyup", function () {
-    if (!guessInput.value.match(/^[a-zA-z]+$/) && guessInput.value != "") {
-        guessInput.value = guessInput.value.slice(0, -1);
-    }
-});
+})
