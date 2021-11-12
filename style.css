@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Nunito:wght@400;700&display=swap");
 * {
   font-family: "Nunito", sans-serif;
   box-sizing: border-box;
@@ -13,6 +13,7 @@ html {
 body {
   background: linear-gradient(-15deg, #172844 3%, #244056 46%, #6ba2bf 100%);
   color: whitesmoke;
+  overflow: hidden;
 }
 body section {
   margin: 0;
@@ -33,6 +34,8 @@ body section h1 {
   padding-bottom: 1rem;
   text-align: center;
   width: 50rem;
+  -webkit-animation: slide-from-top 1.3s ease-in-out;
+          animation: slide-from-top 1.3s ease-in-out;
 }
 body input,
 body button {
@@ -50,17 +53,31 @@ body button:hover {
 body button:hover {
   cursor: pointer;
 }
+body #redo-btn {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0;
+  transition: transform 1s;
+  color: whitesmoke;
+}
+body #redo-btn i {
+  padding: 1rem;
+}
 body span {
   margin: 0;
   font-size: 3rem;
   font-weight: 900;
 }
 body figure {
-  margin: 10rem 4rem 10rem 0;
+  padding: 10vh 5vw 5vh 0;
 }
 body figure .hang-hidden {
   stroke: rgba(255, 255, 255, 0);
   fill: rgba(255, 255, 255, 0);
+}
+body figure .fade-in {
+  -webkit-animation: fade-in 0.4s ease-in-out;
+          animation: fade-in 0.4s ease-in-out;
 }
 body #start-field,
 body #game-field,
@@ -76,6 +93,10 @@ body #start-field {
   margin-top: 0;
   padding-top: 0;
 }
+body #start-field div {
+  -webkit-animation: slide-from-bottom 1.3s ease-in-out;
+          animation: slide-from-bottom 1.3s ease-in-out;
+}
 body #game-field .gameUI {
   display: flex;
   flex-direction: row;
@@ -84,8 +105,7 @@ body #game-field .gameUI {
   justify-content: space-around;
 }
 body #game-field .guessing {
-  margin: 10rem 0 10rem 0;
-  padding-bottom: 10rem;
+  padding: 5vh 0 15vh 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,11 +121,15 @@ body #game-field .guessing #game-letters .hidden {
   color: rgba(255, 255, 255, 0);
 }
 body #game-field .guessing div {
-  margin-top: 10rem;
+  margin-top: 8rem;
   flex-direction: row;
 }
 body #game-field .guessing div input {
   width: 5rem;
+}
+body #game-field .guessing div #display-time {
+  margin: 1rem;
+  text-align: center;
 }
 body #game-field .guessed {
   display: flex;
@@ -115,13 +139,14 @@ body #game-field .guessed span {
   margin-right: 2rem;
 }
 body li {
+  font-family: "DM Mono", monospace;
   display: inline;
   list-style-type: none;
   background-color: #95aed6;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-bottom: #172844 3px solid;
   margin: 0 0.5rem 5rem 0;
-  font-size: 2rem;
+  font-size: 2.7rem;
 }
 body input {
   width: 19.75rem;
@@ -136,4 +161,80 @@ body #end-score {
   margin-bottom: 5rem;
   font-size: 2rem;
   text-align: center;
+}
+
+@-webkit-keyframes slide-from-top {
+  0% {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-from-top {
+  0% {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes slide-from-bottom {
+  0% {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes slide-from-bottom {
+  0% {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }/*# sourceMappingURL=style.css.map */
