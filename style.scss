@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Nunito:wght@400;700&display=swap');
 
 * {
     font-family: 'Nunito', sans-serif;
@@ -14,7 +14,7 @@ html {
 body {
     background: linear-gradient(-15deg, #172844 3%, #244056 46%, #6ba2bf 100%);
     color: whitesmoke;
-    // overflow: hidden;
+    overflow: hidden;
 
     section {
         margin: 0;
@@ -37,7 +37,7 @@ body {
             padding-bottom: 1rem;
             text-align: center;
             width: 50rem;
-
+            animation: slide-from-top 1.3s ease-in-out;
         }
     }
 
@@ -59,6 +59,19 @@ body {
         cursor: pointer;
     }
 
+
+    #redo-btn {
+        position: fixed;
+        background-color: rgba(255, 255, 255, 0);
+        padding: 0;
+        transition: transform 1s;
+        color: whitesmoke;
+
+        i {
+            padding: 1rem;
+        }
+    }
+
     span {
         margin: 0;
         font-size: 3rem;
@@ -71,6 +84,10 @@ body {
         .hang-hidden {
             stroke: rgba(255, 255, 255, 0);
             fill: rgba(255, 255, 255, 0);
+        }
+
+        .fade-in {
+            animation: fade-in 0.4s ease-in-out;
         }
     }
 
@@ -88,6 +105,10 @@ body {
     #start-field {
         margin-top: 0;
         padding-top: 0;
+
+        div {
+            animation: slide-from-bottom 1.3s ease-in-out;
+        }
     }
 
     #game-field {
@@ -116,7 +137,7 @@ body {
             }
 
             div {
-                margin-top: 10rem;
+                margin-top: 8rem;
                 flex-direction: row;
 
 
@@ -142,13 +163,14 @@ body {
     }
 
     li {
+        font-family: 'DM Mono', monospace;
         display: inline;
         list-style-type: none;
         background-color: #95aed6;
-        padding: 1rem 1.5rem;
+        padding: 0.5rem 1rem;
         border-bottom: #172844 3px solid;
         margin: 0 0.5rem 5rem 0;
-        font-size: 2rem;
+        font-size: 2.7rem;
     }
 
     input {
@@ -168,5 +190,51 @@ body {
         margin-bottom: 5rem;
         font-size: 2rem;
         text-align: center;
+    }
+}
+
+@keyframes slide-from-top {
+    0% {
+        transform: translateY(-150px);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-from-bottom {
+    0% {
+        transform: translateY(150px);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
