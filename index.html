@@ -8,12 +8,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Hangman</title>
 </head>
 
 <body>
     <main>
+        <button id="redo-btn"><i class="fas fa-redo-alt"></i></button>
         <section id="start-field">
             <h1 id="title">The Hangman Game</h1>
             <h1>Enter a new word</h1>
@@ -55,13 +58,11 @@
                         <li>Y</li>
                     </ul>
                     <div>
-                        <input type="text" name="" id="guess-input" maxlength="1">
+                        <input type="text" name="" id="guess-input" minlength="1" maxlength="1">
                         <button id="game-btn">Guess</button>
                         <p id="display-time"></p>
                     </div>
                 </div>
-
-
 
             </div>
             <div class="guessed">
