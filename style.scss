@@ -78,19 +78,6 @@ body {
         font-weight: 900;
     }
 
-    figure {
-        padding: 10vh 5vw 5vh 0;
-
-        .hang-hidden {
-            stroke: rgba(255, 255, 255, 0);
-            fill: rgba(255, 255, 255, 0);
-        }
-
-        .fade-in {
-            animation: fade-in 0.4s ease-in-out;
-        }
-    }
-
     #start-field,
     #game-field,
     #end-field {
@@ -112,6 +99,7 @@ body {
     }
 
     #game-field {
+        margin-top: 30vh;
 
         .gameUI {
             display: flex;
@@ -119,35 +107,54 @@ body {
             align-items: center;
             width: 100%;
             justify-content: space-around;
-        }
 
-        .guessing {
-            padding: 5vh 0 15vh 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            figure {
+                flex: 0 1 40%;
+                margin-top: 5vh;
 
-            #game-letters {
-                margin-top: 8rem;
+                svg {
+                    width: 100%;
+                    height: auto;
+                    max-height: 700px;
+                    padding-bottom: 10vh;
+                }
 
-                .hidden {
-                    user-select: none;
-                    color: rgba(255, 255, 255, 0);
+                .hang-hidden {
+                    stroke: rgba(255, 255, 255, 0);
+                    fill: rgba(255, 255, 255, 0);
+                }
+
+                .fade-in {
+                    animation: fade-in 0.4s ease-in-out;
                 }
             }
 
-            div {
-                margin-top: 8rem;
-                flex-direction: row;
+            .guessing {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
 
+                #game-letters {
+                    flex: 2 0 60%;
 
-                input {
-                    width: 5rem;
+                    .hidden {
+                        user-select: none;
+                        color: rgba(255, 255, 255, 0);
+                    }
                 }
 
-                #display-time {
-                    margin: 1rem;
-                    text-align: center;
+                div {
+                    margin-top: 4rem;
+                    flex-direction: row;
+
+                    input {
+                        width: 5rem;
+                    }
+
+                    #display-time {
+                        margin: 1rem;
+                        text-align: center;
+                    }
                 }
             }
         }
@@ -155,6 +162,7 @@ body {
         .guessed {
             display: flex;
             flex-direction: row;
+            padding-bottom: 5vh;
 
             span {
                 margin-right: 2rem;
@@ -167,9 +175,9 @@ body {
         display: inline;
         list-style-type: none;
         background-color: #95aed6;
-        padding: 0.5rem 1rem;
+        padding: 0 0.7rem;
         border-bottom: #172844 3px solid;
-        margin: 0 0.5rem 5rem 0;
+        margin-right: 0.3rem;
         font-size: 2.7rem;
     }
 
