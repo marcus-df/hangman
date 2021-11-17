@@ -1,4 +1,4 @@
-// Variabler som kopplas till de olika elementen i html:en 
+// Variabler som kopplas till de olika DOM-elementen
 const startField = document.getElementById("start-field");
 const startInput = document.getElementById("start-input");
 const startBtn = document.getElementById("start-btn");
@@ -15,10 +15,10 @@ const body = document.getElementById("body");
 const arms = document.getElementById("arms");
 const legs = document.getElementById("legs");
 
-const redoBtn = document.getElementById("redo-btn");
+const redoBtn = document.getElementById("redo-btn"); // Knapp för att ladda om sidan under spelets gång
 const displayTime = document.getElementById("display-time");
 
-const guessInput = document.getElementById("guess-input"); // Input-fält för att gissningar
+const guessInput = document.getElementById("guess-input"); // Input-fält för gissningar
 const usedLetters = document.getElementById("used-letters"); // Misslyckade försök
 
 const endField = document.getElementById("end-field");
@@ -29,20 +29,20 @@ const restartBtn = document.getElementById("restart-btn");
 let theWord = [];
 let correctLetters = [];
 let failCount = 0;
+let timeBonus = 0;
+let points = 0;
 let remainingGuesses;
 let remainingTime;
 let intervalID;
-let timeBonus = 0;
-let points = 0;
 
-// Filterfunktion som lyssnar efter input som matchar alfabetet - annars raderas det sist inmatade värdet
+// Filterfunktion, lyssnar efter input som matchar alfabetet - annars raderas det sist inmatade värdet
 startInput.addEventListener("keyup", function () {
     if (!startInput.value.match(/^[a-zA-z]+$/) && startInput.value != "") {
         startInput.value = startInput.value.slice(0, -1);
     }
 });
 
-// Anropar startBtn.addEventListener("click", generateWord);
+// Anropar "click" på startBtn när man trycker enter i startInput-fältet.
 startInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         startBtn.click();
@@ -50,7 +50,6 @@ startInput.addEventListener("keypress", function (event) {
 });
 
 startBtn.addEventListener("click", generateWord);
-
 
 // Ordet som spelaren skall gissa på, det kommer tilldelas ett värde via en splitmetod
 function generateWord() {
@@ -71,14 +70,14 @@ function generateWord() {
     }
 }
 
-// Filterfunktion som lyssnar efter input som matchar alfabetet - annars raderas det sist inmatade värdet
+// Filterfunktion, lyssnar efter input som matchar alfabetet - annars raderas det sist inmatade värdet
 guessInput.addEventListener("keyup", function () {
     if (!guessInput.value.match(/^[a-zA-z]+$/) && guessInput.value.length != 0) {
         guessInput.value = guessInput.value.slice(0, -1);
     }
 });
 
-// Anropar gameBtn.addEventListener("click", compareLetter);
+// Anropar "click" på gameBtn när man trycker enter i guessInput-fältet.
 guessInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         gameBtn.click();
@@ -95,7 +94,6 @@ function compareLetter() {
     let result = theWord.filter(letter => letter == input);
 
     correctLetters.length = theWord.length;
-
     // Rensar guessInput fältet efter varje gissad bokstav
     guessInput.value = "";
 
@@ -114,7 +112,7 @@ function compareLetter() {
         failCount++;
     };
 
-    // Switch case, kollar värdet av failCount och tar bort klasser baserat på failCounts värde.
+    // Switch case, kollar värdet av failCount och tar bort eller lägger till klasser baserat på failCounts värde.
     switch (failCount) {
         case 1:
             ground.classList.remove("hang-hidden");
@@ -155,11 +153,11 @@ function compareLetter() {
 // Detta händer när man klarat spelet
 function winCondition() {
     clearInterval(intervalID);
-
     // Scrollar ned till botten
     window.scrollTo(0, document.body.scrollHeight);
-    remainingGuesses = 6 - failCount;
     endTitle.innerHTML = "You completed the word!";
+
+    remainingGuesses = 6 - failCount;
 
     if (remainingTime > 60) {
         timeBonus = 7;
@@ -185,17 +183,17 @@ function winCondition() {
         endScore.innerHTML = "You won with " + remainingGuesses + " attempts remaining and <br>" +
             "you got " + points + " of 13 points!";
     }
-}
+};
 
+//Detta händer när man förlorar
 function loseCondition() {
     clearInterval(intervalID);
-
-    // Scrollar ned till botten
     window.scrollTo(0, document.body.scrollHeight);
     document.getElementById("end-title").innerHTML = "Oh no! You lost!";
     endScore.innerHTML = "You ran out of attempts or time. <br> The word was " + theWord.join("");
 }
 
+// Nollställer hangman-SVGn
 function hideHangman() {
     ground.classList.add("hang-hidden");
     scaffold.classList.add("hang-hidden");
@@ -211,18 +209,13 @@ function hideHangman() {
     legs.classList.remove("fade-in");
 }
 
-// Reset
+// Nollställer värden och inputs
 function resetInput() {
-    // Nollställer och tar bort ordet från input-fältet.
     startInput.value = "";
-    // Nollställer och tar bort bokstav från guess-fältet.
     guessInput.value = "";
-    // Nollställer och tar bort tidigare ord.
     gameLetters.innerHTML = "";
     usedLetters.innerHTML = "";
-    // Nollställer antalet felaktiga gissningar
     failCount = 0;
-    // Nollställer arrayen som spara rätta gissningar
     correctLetters = [];
 };
 
@@ -241,9 +234,8 @@ function startTimer(time) {
     };
 };
 
-// Restart
 restartBtn.addEventListener('click', function () {
-    document.getElementById("end-title").innerHTML = "You completed the word!";
+    endTitle.innerHTML = "You completed the word!";
 });
 
 redoBtn.addEventListener("click", function () {
@@ -252,6 +244,7 @@ redoBtn.addEventListener("click", function () {
     window.scrollTo(0, 0);
 })
 
+// Animation för redoBtn vid hover
 redoBtn.addEventListener("mouseover", function () {
     redoBtn.style.transform = 'rotate(360deg)';
 })
